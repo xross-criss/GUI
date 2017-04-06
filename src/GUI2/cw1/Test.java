@@ -1,4 +1,4 @@
-package pl.morecraft.dev.gui.GUI2.cw1;
+package GUI2.cw1;
 
 public class Test {
 

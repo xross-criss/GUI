@@ -1,20 +1,19 @@
-package pl.morecraft.dev.gui.GUI2.cw1;
+package GUI2.cw1;
 
-public class Pacjent {
-    String nazwisko;
-    String choroba;
-    String leczenie;
+public abstract class Pacjent {
 
-    Pacjent[] pacjenci;
+    private String nazwisko;
 
-    public Pacjent(Pacjent[] pacjenci) {
-        this.pacjenci = pacjenci;
+    public Pacjent(String nazwisko) {
+        this.nazwisko = nazwisko;
     }
 
-    public Pacjent() {
-
+    protected String nazwisko() {
+        return nazwisko;
     }
 
+    protected abstract String choroba();
 
+    protected abstract String leczenie();
 
 }

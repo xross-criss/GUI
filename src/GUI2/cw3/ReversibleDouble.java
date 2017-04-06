@@ -24,4 +24,9 @@ public class ReversibleDouble implements Reversible {
         return this;
     }
 
+    @Override
+    public String toString() {
+        return String.valueOf(value);
+    }
+
 }

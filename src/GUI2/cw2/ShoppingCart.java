@@ -1,9 +1,14 @@
 package GUI2.cw2;
 
-import java.util.ArrayList;
+public class ShoppingCart extends AbstractBox {
 
-public class ShoppingCart{
-    ArrayList wozek;
-    Flower flower;
-    int sztuk;
+    public ShoppingCart(Customer owner) {
+        super(owner, owner.getFlowerList());
+    }
+
+    @Override
+    public String getName() {
+        return "Wózek";
+    }
+
 }

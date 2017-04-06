@@ -18,9 +18,13 @@ public class ReversibleString implements Reversible {
 
     @Override
     public Reversible reverse() {
-
         string = new StringBuilder(string).reverse().toString();
         return this;
+    }
+
+    @Override
+    public String toString() {
+        return string;
     }
 
 }

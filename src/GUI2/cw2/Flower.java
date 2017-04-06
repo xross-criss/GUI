@@ -1,27 +1,28 @@
 package GUI2.cw2;
 
-public class Flower {
-    String nazwaKwiatka;
-    String kolor;
+public abstract class Flower {
 
-    public Flower(String nazwaKwiatka, String kolor) {
-        this.nazwaKwiatka = nazwaKwiatka;
-        this.kolor = kolor;
+    private int quantity;
+
+    public Flower(int quantity) {
+        this.quantity = quantity;
     }
 
-    public String getNazwaKwiatka() {
-        return nazwaKwiatka;
+    public abstract String getName();
+
+    public abstract String getColor();
+
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setNazwaKwiatka(String nazwaKwiatka) {
-        this.nazwaKwiatka = nazwaKwiatka;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
-    public String getKolor() {
-        return kolor;
+    @Override
+    public String toString() {
+        return getName() + ", kolor: " + getColor() + ", ilość " + getQuantity() + ", cena " + PriceList.getInstance().getPrice(getName());
     }
 
-    public void setKolor(String kolor) {
-        this.kolor = kolor;
-    }
 }

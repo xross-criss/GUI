@@ -29,7 +29,7 @@ public class ReverseTest {
 
         System.out.println("Przywrócone i zmienione:");
         for (Reversible r : revers) {
-                 r.reverse();
+            System.out.println(r.reverse());
         }
     }
 }

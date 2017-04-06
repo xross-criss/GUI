@@ -3,7 +3,13 @@ package GUI2.cw2;
 public class FloristsTest {
     // definicja metody sumowania wartosci kwiatów o podanym kolorze
     static int valueOf(Box box, String color) {
-               /*<- tu trzeba wpisac kod metody */
+        int sum = 0;
+        for (Flower flower : box.getFlowerList()) {
+            if (flower.getColor().equalsIgnoreCase(color)) {
+                sum += (int) (flower.getQuantity() * PriceList.getInstance().getPrice(flower.getName()));
+            }
+        }
+        return sum;
     }
 
     public static void main(String[] args) {

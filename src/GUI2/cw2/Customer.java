@@ -1,44 +1,71 @@
 package GUI2.cw2;
 
-public class Customer extends ShoppingCart {
-    String imie;
-    double portfel;
-    private ShoppingCart shoppingCart;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ListIterator;
 
-    public Customer(String imie, double portfel) {
-        this.imie = imie;
-        this.portfel = portfel;
+public class Customer {
+
+    private String name;
+    private double cash;
+    private List<Flower> flowerList;
+
+    public Customer(String name, double cash) {
+        this.name = name;
+        this.cash = cash;
+        this.flowerList = new ArrayList<>();
     }
 
-    public String getImie() {
-        return imie;
+    public String getName() {
+        return name;
     }
 
-    public void setImie(String imie) {
-        this.imie = imie;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public double getPortfel() {
-        return portfel;
+    public double getCash() {
+        return cash;
     }
 
-    public void setPortfel(double portfel) {
-        this.portfel = portfel;
+    public void setCash(double cash) {
+        this.cash = cash;
+    }
+
+    public List<Flower> getFlowerList() {
+        return flowerList;
+    }
+
+    public void get(Flower flower) {
+        flowerList.add(flower);
     }
 
     public ShoppingCart getShoppingCart() {
-        return shoppingCart;
+        return new ShoppingCart(this);
     }
 
     public void pay() {
-
+        PriceList priceList = PriceList.getInstance();
+        ListIterator<Flower> iterator = flowerList.listIterator();
+        while (iterator.hasNext()) {
+            Flower flower = iterator.next();
+            double price = priceList.getPrice(flower.getName());
+            if (price <= 0) {
+                iterator.remove();
+            } else {
+                double wholePrice = flower.getQuantity() * price;
+                if (cash >= wholePrice) {
+                    cash -= wholePrice;
+                } else {
+                    iterator.remove();
+                }
+            }
+        }
     }
 
-    public void pack(Box pudelkoJanka) {
-
+    public void pack(Box box) {
+        box.addAll(flowerList);
+        flowerList.clear();
     }
 
-    public String getCash() {
-        return String.valueOf(portfel);
-    }
 }
