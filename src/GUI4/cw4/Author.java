@@ -1,11 +1,14 @@
 package GUI4.cw4;
 
-public class Author extends Thread {
-    Teksty txtArea;
+import static java.lang.Thread.sleep;
 
-    Author(Teksty t) {
+public class Author implements Runnable {
+    Teksty txtArea;
+    private String textToWrite;
+
+    /*Author(String[] t) {
         txtArea = t;
-    }
+    }*/
 
     public void run() {
 

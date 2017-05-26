@@ -1,9 +1,9 @@
 package GUI4.cw4;
 
-public class Writer extends Thread {
+public class Writer implements Runnable {
     Teksty txtArea;
 
-    Writer(Teksty t) {
+    Writer(Author t) {
         txtArea = t;
     }
 
