@@ -7,16 +7,19 @@ import java.util.ArrayList;
 public class Panel extends JFrame {
     ImageIcon icon;
     JLabel label;
+    Text text = new Text();
 
-    public Panel(ArrayList<String> path, int wait, int size) {
-        wait *= 1000;
+    public Panel(ArrayList<String> path, String waiter, String size) {
+        int wait = Integer.parseInt(waiter) * 1000;
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
         setLayout(new FlowLayout());
         setResizable(false);
         craftImage(path, wait);
-        end(size);
+
+        text.setText("Koniec prezentacji");
+        end(Integer.parseInt(size));
     }
 
     public void craftImage(ArrayList<String> path, int wait) {
@@ -37,7 +40,7 @@ public class Panel extends JFrame {
     }
 
     public void end(int size) {
-        label = new JLabel("Zakończenie Prezentacji ", JLabel.CENTER);
+        label = new JLabel(text.getText(), JLabel.CENTER);
         Rectangle r = getBounds();
         int h = r.height;
         int w = r.width;
