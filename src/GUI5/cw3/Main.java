@@ -3,33 +3,16 @@ package GUI5.cw3;
 import javax.swing.*;
 import java.awt.*;
 
+import static GUI5.cw3.Parser.parse;
+
 public class Main extends JTextArea {
 
-    static String fontFace = "Dialog";
-    static int fontSize = 14;
-    static float fontColorR = 255 / 255, fontColorB = 255 / 255, fontColorG = 255 / 255;
-    static float backgroundColorR = 0, backgroundColorB = 0,
-            backgroundColorG = 255 / 255;
+    private static String fontFace = "Dialog";
+    private static int fontSize = 14;
+    private static float fontColorR = 1, fontColorB = 1, fontColorG = 1;
+    private static float backgroundColorR = 0, backgroundColorB = 0,
+            backgroundColorG = 1;
 
-    /**
-     * @param params
-     * @param index
-     * @param defaultValue
-     * @return
-     */
-    private static float parse(String[] params, int index, float defaultValue) {
-
-        float returnValue;
-        try {
-            returnValue = Float.parseFloat(params[index]) / 255;
-            if (returnValue < 0 || returnValue > 1) {
-                throw new Exception("Out of otder");
-            }
-            return returnValue;
-        } catch (Exception e) {
-            return defaultValue;
-        }
-    }
 
     public static void main(String[] args) {
 

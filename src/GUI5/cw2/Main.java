@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args){
-        File[] files = new File("C:/Eclipse/Grafika").listFiles();
+        File[] files = new File("H:\\17_03_2017\\tapety").listFiles();
         ArrayList<String> path = new ArrayList<>();
 
         for(int i=0; i<files.length; i++){
