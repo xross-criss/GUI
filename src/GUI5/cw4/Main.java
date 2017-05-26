@@ -11,12 +11,16 @@ public class Main {
 
         while (true) {
             try {
-                input = JOptionPane.showInputDialog(
-                        (dialogExtraContent.length() > 0 ? dialogExtraContent
-                                + "\n" : "")
-                                + "Wprowadź typ rozkładu(A-G)").charAt(0);
+                String dialog = JOptionPane.showInputDialog(
+                        (dialogExtraContent.length() > 0 ? dialogExtraContent + "\n" : "") + "Wprowadź typ rozkładu(A-G)");
 
-                frame(input);
+                if (dialog.length() > 1) {
+                    throw new Exception("Możesz wprowadzić tylko jeden znak");
+                } else {
+                    input = dialog.charAt(0);
+                    frame(input);
+                }
+
                 break;
 
             } catch (Exception e) {
@@ -27,11 +31,11 @@ public class Main {
 
     private static void frame(char input) throws Exception {
         JFrame frame = new JFrame();
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setPreferredSize(new Dimension(300, 300));
         frame.setLocation(300, 300);
 
-        switch (input){
+        switch (input) {
             case ('A'):
                 frame.setTitle("A w układzie BorderLayou");
                 frame.setLayout(new BorderLayout());
@@ -67,7 +71,8 @@ public class Main {
                 frame.setLayout(new GridLayout(3, 2, 1, 1));
                 break;
 
-            default: throw new Exception("Nieprawidłowy parametr wejściowy");
+            default:
+                throw new Exception("Nieprawidłowy parametr wejściowy");
         }
 
         for (int x = 0; x < 5; x++) {
