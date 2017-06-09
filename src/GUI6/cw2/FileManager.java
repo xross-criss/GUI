@@ -55,7 +55,7 @@ public class FileManager {
             this.saveAs();
             return;
         } else {
-            _save(storage);
+            saveIn(storage);
         }
     }
 
@@ -64,11 +64,11 @@ public class FileManager {
         int ret = chooser.showDialog(panel, "Zapisz jako");
         if (ret == JFileChooser.APPROVE_OPTION) {
             storage = chooser.getSelectedFile();
-            _save(chooser.getSelectedFile());
+            saveIn(chooser.getSelectedFile());
         }
     }
 
-    private void _save(File file) {
+    private void saveIn(File file) {
 
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter(storage));
