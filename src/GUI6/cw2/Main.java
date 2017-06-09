@@ -14,6 +14,7 @@ import java.util.TreeSet;
 
 /**
  *
+ *
  * Stworzyć prosty edytor tekstu z opcjami umieszczonymi w menu rozwijalnym File
  * Open - otwiera plik wybrany w dialogu wynoru plików i wczytuje plik do
  * edytora Save - zapisuje zawartość edytora do bieżącego pliku (jeśli nie ma

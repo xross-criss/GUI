@@ -9,6 +9,7 @@ public class MyIcon implements javax.swing.Icon {
 
     /**
      *
+     *
      */
     public MyIcon() {
         this(10, 10, Color.GREEN);

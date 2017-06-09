@@ -9,6 +9,7 @@ public class ListenerBackground implements ActionListener {
     protected JTextArea handler;
 
     /**
+     *
      * @param handler
      */
     public ListenerBackground(JTextArea handler) {
