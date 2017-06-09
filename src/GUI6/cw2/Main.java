@@ -12,36 +12,11 @@ import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.TreeSet;
 
-/**
- *
- * Stworzyć prosty edytor tekstu z opcjami umieszczonymi w menu rozwijalnym File
- * Open - otwiera plik wybrany w dialogu wynoru plików i wczytuje plik do
- * edytora Save - zapisuje zawartość edytora do bieżącego pliku (jeśli nie ma
- * pliku, to dialog) Save As... zapisuje zawartość do pliku wybranego z dialogu
- * Exit - zamknięcie okna i zakończenie działania aplikacji
- *
- * Edit Adresy Dom - dopisuje do edytora adres domowy Szkoła - dopisuje do
- * edytora adres szkoły Firma - dopisuje do edutora adres służbowy
- *
- * Options Foreground - zmienia kolor pisma na wybraną opcję kolor1 ... kolorN
- * Background - zmienia kolor tła na wybraną opcję kolor1 ... kolorN Font size -
- * zmienia rozmiar pisma na wybraną opcję 8 10 ... 24
- *
- * Zapewnić: mnemoniki i akceleratory dla opcji Open, Save, Save As..., Exit,
- * Dom, Szkoła, Firma pokazywanie kolorów w opcjach wyboru koloru (tła i
- * pierwszego planu) w postaci kolorowych kółek pokazywanie nazwy edytowanego
- * pliku an pasku tytułu (jeślie nie ma pliku - "bez tytułu")
- *
- * Uwagi: łatwe umieszczenie kolorów = własna klasa implementująca Icon należy
- * napisać kilka metod uniwersalnych (np. tworzące opcje menu z zadanymi
- * charakterystykami), w przeciwnym razie kod będzie duży i słabo czytelny
- *
- */
 public class Main extends JFrame {
 
     boolean isChange = false;
     JTextArea textArea;
-    String titlePrefix = "Word processor - ", titleSufix,
+    String titlePrefix = "Prosty edytor - ", titleSufix,
             titleSufixDefault = "bez tytułu";
     FileManager fileManager;
     Hashtable<String, Color> colors;
@@ -71,20 +46,8 @@ public class Main extends JFrame {
         fonts.put(24, "24 pts");
     }
 
-    /**
-     *
-     */
-    Main() {
-        initElements();
-        initUI();
-    }
-
-    /**
-     *
-     */
     protected void initElements() {
 
-        // components
         textArea = new JTextArea();
         textArea.getDocument().addDocumentListener(new DocumentListener() {
             @Override
@@ -104,7 +67,6 @@ public class Main extends JFrame {
 
         fileManager = new FileManager(textArea);
 
-        // menu: file
         JMenu file = new JMenu("File");
 
         JMenuItem fileOpen = new JMenuItem("Open");
@@ -169,7 +131,6 @@ public class Main extends JFrame {
         file.addSeparator();
         file.add(fileExit);
 
-        // menu: edit
         JMenu edit = new JMenu("Edit");
         JMenu editAddresses = new JMenu("Adresy");
 
@@ -180,7 +141,7 @@ public class Main extends JFrame {
         editAddressesWork.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                textArea.insert("Warszawa, Domaniewska 39", textArea
+                textArea.insert("Warszawa, Puławska 182", textArea
                         .getCaretPosition());
             }
         });
@@ -192,7 +153,7 @@ public class Main extends JFrame {
         editAddressesHome.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                textArea.insert("Konstancin, Kwiatowa 15", textArea
+                textArea.insert("Warszawa Gagarina 555", textArea
                         .getCaretPosition());
             }
         });
@@ -214,14 +175,13 @@ public class Main extends JFrame {
         editAddresses.add(editAddressesSchool);
         edit.add(editAddresses);
 
-        // menu: options
         JMenu options = new JMenu("Options");
         JMenuItem menuItem;
 
         JMenu optionsForeground = new JMenu("Foreground");
         ListenerForeground listenerForeground = new ListenerForeground(textArea);
         for (String key : colors.keySet()) {
-            menuItem = new JMenuItem(key, new MyIcon(colors.get(key)));
+            menuItem = new JMenuItem(key, new Icon(colors.get(key)));
             menuItem.addActionListener(listenerForeground);
             optionsForeground.add(menuItem);
         }
@@ -229,7 +189,7 @@ public class Main extends JFrame {
         JMenu optionsBackground = new JMenu("Background");
         ListenerBackground listenerBackground = new ListenerBackground(textArea);
         for (String key : colors.keySet()) {
-            menuItem = new JMenuItem(key, new MyIcon(colors.get(key)));
+            menuItem = new JMenuItem(key, new Icon(colors.get(key)));
             menuItem.addActionListener(listenerBackground);
             optionsBackground.add(menuItem);
         }
@@ -256,9 +216,6 @@ public class Main extends JFrame {
         setJMenuBar(menu);
     }
 
-    /**
-     *
-     */
     protected void initUI() {
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -269,17 +226,11 @@ public class Main extends JFrame {
         setVisible(true);
     }
 
-    /**
-     * @param sufix
-     */
     protected void setTitleText(String sufix) {
         titleSufix = sufix;
         setTitle(titlePrefix + titleSufix);
     }
 
-    /**
-     * @param args
-     */
     public static void main(String[] args) {
 
         SwingUtilities.invokeLater(new Runnable() {
@@ -287,5 +238,10 @@ public class Main extends JFrame {
                 new Main();
             }
         });
+    }
+
+    Main() {
+        initElements();
+        initUI();
     }
 }

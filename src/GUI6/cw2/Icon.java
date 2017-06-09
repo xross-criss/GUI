@@ -2,7 +2,7 @@ package GUI6.cw2;
 
 import java.awt.*;
 
-public class MyIcon implements javax.swing.Icon {
+public class Icon implements javax.swing.Icon {
 
     protected Color color;
     protected int widht, height;
@@ -10,14 +10,14 @@ public class MyIcon implements javax.swing.Icon {
     /**
      *
      */
-    public MyIcon() {
+    public Icon() {
         this(10, 10, Color.GREEN);
     }
 
     /**
      * @param color
      */
-    public MyIcon(Color color) {
+    public Icon(Color color) {
         this(10, 10, color);
     }
 
@@ -25,7 +25,7 @@ public class MyIcon implements javax.swing.Icon {
      * @param width
      * @param height
      */
-    public MyIcon(int width, int height) {
+    public Icon(int width, int height) {
         this(width, height, Color.GREEN);
     }
 
@@ -34,7 +34,7 @@ public class MyIcon implements javax.swing.Icon {
      * @param height
      * @param color
      */
-    public MyIcon(int width, int height, Color color) {
+    public Icon(int width, int height, Color color) {
         this.widht = width;
         this.height = height;
         this.color = color;

@@ -4,9 +4,6 @@ import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.*;
 
-/**
- * FileManager
- */
 public class FileManager {
 
     JFileChooser chooser;
@@ -15,9 +12,6 @@ public class FileManager {
     String name;
     File storage;
 
-    /**
-     * @param textArea
-     */
     public FileManager(JTextArea textArea) {
 
         this.textArea = textArea;
@@ -28,16 +22,10 @@ public class FileManager {
         panel = new JPanel();
     }
 
-    /**
-     * @return
-     */
     public String getName() {
         return storage.getName();
     }
 
-    /**
-     *
-     */
     public void read() {
 
         int ret = chooser.showDialog(panel, "Otwórz plik");
@@ -61,9 +49,6 @@ public class FileManager {
         }
     }
 
-    /**
-     *
-     */
     public void save() {
 
         if (storage == null) {
@@ -74,9 +59,6 @@ public class FileManager {
         }
     }
 
-    /**
-     *
-     */
     public void saveAs() {
 
         int ret = chooser.showDialog(panel, "Zapisz jako");
@@ -86,9 +68,6 @@ public class FileManager {
         }
     }
 
-    /**
-     * @param file
-     */
     private void _save(File file) {
 
         try {

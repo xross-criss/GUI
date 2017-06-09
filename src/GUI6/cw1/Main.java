@@ -5,13 +5,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/**
- * Zadanie 1 (max 2 punkty)
- * <p>
- * Przycisk umieszczony w oknie zmienia kolory swojego tła na skutek kliknięć
- * Ustalić dowolną sekwencję kolorów, po jej wyczerpaniu zacząć od pierwszego
- *
- */
 public class Main extends JFrame {
 
     JButton button;
@@ -19,9 +12,6 @@ public class Main extends JFrame {
     protected Color[] colors = new Color[]{Color.RED, Color.BLACK,
             Color.BLUE, Color.YELLOW, Color.WHITE, Color.GREEN};
 
-    /**
-     *
-     */
     Main() {
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -46,9 +36,6 @@ public class Main extends JFrame {
         setVisible(true);
     }
 
-    /**
-     * @param args
-     */
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
