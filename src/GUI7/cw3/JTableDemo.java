@@ -46,7 +46,7 @@ public class JTableDemo extends JFrame {
     };
 
     public JTableDemo() {
-        setTitle("Z53: JTable Demo");
+        setTitle("JTable Demo");
 
         topPanel = new JPanel();
         topPanel.setLayout(new BorderLayout());
@@ -80,19 +80,16 @@ public class JTableDemo extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
 
-                if (
-                    // wymagane wciśnięcie ALT'a
-                        e.isAltDown()
-
-                                // zabezpieczenie przed próbą usuwania z pustej listy lub spoza listy
-                                && table.getSelectedRow() >= 0
-                        ) {
-
+                if (e.isAltDown() && table.getSelectedRow() >= 0) { // wymagane wciśnięcie ALT'a zabezpieczenie przed próbą usuwania z pustej listy lub spoza listy
                     tableModel.deleteRowAt(table.getSelectedRow());
+                }
+
+                if (e.isControlDown() && table.getSelectedRow() >= 0) { //TODO - add control listener, where new window appears and there are details about books, and we can find cover photo at the top od these details
 
                 }
             }
         });
+
 
         scroller = new javax.swing.JScrollPane(table);
         table.setPreferredScrollableViewportSize(new java.awt.Dimension(500, 300));
