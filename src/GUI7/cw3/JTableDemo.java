@@ -14,6 +14,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -31,8 +32,6 @@ import javax.swing.table.TableColumn;
 
 public class JTableDemo extends JFrame {
 
-    private static final long serialVersionUID = -7724610014099235711L;
-
     private JPanel topPanel;
     private JTable table;
     private InteractiveTableModel tableModel;
@@ -40,6 +39,7 @@ public class JTableDemo extends JFrame {
     private JMenuBar mnuBar;
     private JMenu mnuFile;
     private JMenuItem mnuFileOpen, mnuFileSave, mnuFileExit;
+    private TempCacheList tempCacheList;
 
     public static final String[] columnNames = {
             "Autor", "Tytuł", "Cena", ""
@@ -74,7 +74,7 @@ public class JTableDemo extends JFrame {
             tableModel.addEmptyRow();
         }
 
-        // obsługa usuwania podobnie jak w zadaniu 5.2 - przez kliknięcie myszką z przyciśniętym Alt'em
+        // obsługa usuwania podobnie jak w cw 2 - przez kliknięcie myszką z przyciśniętym Alt'em
         table.addMouseListener(new MouseAdapter() {
 
             @Override
@@ -84,7 +84,8 @@ public class JTableDemo extends JFrame {
                     tableModel.deleteRowAt(table.getSelectedRow());
                 }
 
-                if (e.isControlDown() && table.getSelectedRow() >= 0) { //TODO - add control listener, where new window appears and there are details about books, and we can find cover photo at the top od these details
+                if (e.isControlDown() && table.getSelectedRow() >= 0) { //TODO - add control listener, where new window appears and there are details about books, and we can find cover photo at the top od these details.
+                    //TODO - It is required to add temporary cache holding data with all the changes, and after coming back from detailed page to be restored.
 
                 }
             }
@@ -115,22 +116,22 @@ public class JTableDemo extends JFrame {
                 File file = null;
                 if (returnVal == JFileChooser.APPROVE_OPTION) {
                     file = fileDialog.getSelectedFile();
-
                     tableModel.deleteAllRows();
 
                     try {
+                        int iteration = 0; // TODO - check chagnes
                         BufferedReader in = new BufferedReader(new FileReader(file));
                         String line = in.readLine();
                         while (line != null) {
                             String[] listStr = line.split("\\|");
-                            tableModel.addRow(new Book(listStr[0], listStr[1], Double.parseDouble(listStr[2])));
+                            tempCacheList.addBookToList(new Book(listStr[0], listStr[1], Double.parseDouble(listStr[2]), listStr[3], listStr[4]));
+                            tableModel.addRow(tempCacheList.getBook(iteration)); //TODO - Trzeba pobrać Book(Author, Title, Price)
                             line = in.readLine();
+                            iteration += 1;
                         }
                     } catch (FileNotFoundException e1) {
-                        // TODO Auto-generated catch block
                         e1.printStackTrace();
                     } catch (IOException e1) {
-                        // TODO Auto-generated catch block
                         e1.printStackTrace();
                     }
 
@@ -214,7 +215,7 @@ public class JTableDemo extends JFrame {
 
     class InteractiveRenderer extends DefaultTableCellRenderer {
 
-        private static final long serialVersionUID = 1981623364435822203L;
+        //private static final long serialVersionUID = 1981623364435822203L;
         protected int interactiveColumn;
 
         public InteractiveRenderer(int interactiveColumn) {

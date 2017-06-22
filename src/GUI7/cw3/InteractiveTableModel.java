@@ -6,11 +6,6 @@ import javax.swing.table.AbstractTableModel;
 
 public class InteractiveTableModel extends AbstractTableModel {
 
-    /**
-     *
-     */
-    private static final long serialVersionUID = 50152112062425292L;
-
     public static final int AUTHOR_INDEX = 0;
     public static final int TITLE_INDEX = 1;
     public static final int PRICE_INDEX = 2;
