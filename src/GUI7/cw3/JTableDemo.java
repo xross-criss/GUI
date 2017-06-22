@@ -46,7 +46,7 @@ public class JTableDemo extends JFrame {
     };
 
     public JTableDemo() {
-        setTitle("JTable Demo");
+        setTitle("Spis książek");
 
         topPanel = new JPanel();
         topPanel.setLayout(new BorderLayout());
@@ -84,8 +84,14 @@ public class JTableDemo extends JFrame {
                     tableModel.deleteRowAt(table.getSelectedRow());
                 }
 
-                if (e.isControlDown() && table.getSelectedRow() >= 0) { //TODO - add control listener, where new window appears and there are details about books, and we can find cover photo at the top od these details.
+                if (e.isControlDown() && table.getSelectedRow() >= 0) { // wciśnięcie CTRL na danej książce ma pokazać szczegóły danej książki wraz ze zdjęciem okładki
+                    //TODO - add control listener, where new window appears and there are details about books, and we can find cover photo at the top od these details.
                     //TODO - It is required to add temporary cache holding data with all the changes, and after coming back from detailed page to be restored.
+                    JPageBookDetails jPageBookDetails = new JPageBookDetails();
+                    jPageBookDetails.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    jPageBookDetails.pack();
+                    jPageBookDetails.setLocationByPlatform(true);
+                    jPageBookDetails.setVisible(true);
 
                 }
             }
