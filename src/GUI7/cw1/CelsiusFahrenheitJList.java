@@ -26,7 +26,6 @@ import javax.swing.JScrollPane;
  */
 public class CelsiusFahrenheitJList extends JFrame {
 
-    private static final long serialVersionUID = 1L;
     private JPanel topPanel;
     private JList<String> listbox;
 

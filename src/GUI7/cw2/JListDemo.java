@@ -15,8 +15,7 @@ import javax.swing.JTextField;
 
 
 public class JListDemo extends javax.swing.JFrame {
-	
-	private static final long serialVersionUID = 8306444463088260779L;
+
 	private	JPanel						topPanel;
 	private	JList<String>				listBox;
 	private JTextField					textBox;
