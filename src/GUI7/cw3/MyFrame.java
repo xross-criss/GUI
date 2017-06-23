@@ -11,7 +11,7 @@ import java.util.Objects;
 
 public class MyFrame extends JFrame {
 
-    public static final String DEFAULT_LOC = "F:\\dev\\private\\git\\GUI\\resources";
+    public static final String DEFAULT_LOC = "E:\\workspace\\privat\\GUI\\resources\\SampleData.dat";
 
     private final BookRepository bookRepository;
     private final AbstractTableModel tableModel;
@@ -86,6 +86,19 @@ public class MyFrame extends JFrame {
                 );
             }
         }
+    }
+
+    public static String openOpenPictureDialog() {
+        final JFileChooser fc = new JFileChooser(DEFAULT_LOC);
+        fc.setAcceptAllFileFilterUsed(false);
+        fc.addChoosableFileFilter(new FileNameExtensionFilter("Image", "jpg"));
+        fc.addChoosableFileFilter(new FileNameExtensionFilter("Picture", "png"));
+        int returnVal = fc.showOpenDialog(new MyFrame());
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            File file = fc.getSelectedFile();
+            return file.getPath();
+            }
+        return null;
     }
 
     private void openBookDialog(Book book) {
