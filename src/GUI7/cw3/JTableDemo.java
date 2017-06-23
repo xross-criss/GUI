@@ -128,6 +128,7 @@ public class JTableDemo extends JFrame {
                         while (line != null) {
                             String[] listStr = line.split("\\|");
                             tempCacheList.addBookToList(new Book(listStr[0], listStr[1], Double.parseDouble(listStr[2]), listStr[3], listStr[4]));
+                            // 1)autorzy, 2)tytuł, 3)cena, 4)opis, 5)nazwa zdjęcia/link
                             tableModel.addRow(tempCacheList.getBook(iteration)); //TODO - Trzeba pobrać Book(Author, Title, Price)
                             line = in.readLine();
                             iteration++;
@@ -166,13 +167,22 @@ public class JTableDemo extends JFrame {
                         return;
                     }
                     BufferedWriter outFile = new BufferedWriter(new FileWriter(fileToSave));
-                    for (int a = 0; a < tableModel.getRowCount() - 1; a++) {
+                    for (Book book : tempCacheList.getListOfBooks()) {
+                        outFile.write(
+                                book.getAuthor().toString() + "|" +
+                                        book.getTitle() + "|" +
+                                        book.getPrice() + "|" +
+                                        book.getBookDescription() + "|" +
+                                        book.getPictureURL() + "\n"
+                        ); //TODO - sprawdzić nowy zapis do pliku bezpośrednio z listy obiektu.
+                    }
+/*                    for (int a = 0; a < tableModel.getRowCount() - 1; a++) {
                         outFile.write(
                                 tableModel.getValueAt(a, InteractiveTableModel.AUTHOR_INDEX) + "|" +
                                         tableModel.getValueAt(a, InteractiveTableModel.TITLE_INDEX) + "|" +
                                         tableModel.getValueAt(a, InteractiveTableModel.PRICE_INDEX) + "\n"
                         );
-                    }
+                    }*/ //OLD
 
                     outFile.close();
                     setTitle(fileToSave.getName());
@@ -220,7 +230,6 @@ public class JTableDemo extends JFrame {
 
     class InteractiveRenderer extends DefaultTableCellRenderer {
 
-        //private static final long serialVersionUID = 1981623364435822203L;
         protected int interactiveColumn;
 
         public InteractiveRenderer(int interactiveColumn) {
