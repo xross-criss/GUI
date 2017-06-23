@@ -20,7 +20,7 @@ public class JPageBookDetails extends JPanel {
         l1.setFont(new Font("Tahoma", Font.BOLD, 18));
         add(l1);
 
-        l2 = new JLabel("napisana przez: " + book.getAuthor());
+        l2 = new JLabel("Napisana przez: " + book.getAuthor());
         l2.setBounds(60, 30, 200, 30);
         l2.setFont(new Font("Tahoma", Font.ITALIC | Font.BOLD, 12));
         add(l2);
@@ -51,7 +51,7 @@ public class JPageBookDetails extends JPanel {
             //System.out.println("/resources/img/" + path);
             ret = Toolkit.getDefaultToolkit().createImage(JPageBookDetails.class.getClass().getResource("/img/" + path));
         } catch (Exception e) {
-            // TODO Exception
+            e.printStackTrace();
         }
         return ret;
     }
