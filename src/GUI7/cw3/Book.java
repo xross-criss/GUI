@@ -1,5 +1,9 @@
 package GUI7.cw3;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class Book {
 
     private String author;
@@ -110,5 +114,32 @@ public class Book {
 
     public void setPictureURL(String pictureURL) {
         this.pictureURL = pictureURL;
+    }
+
+    public static String formatDescription(String bookDescription, int maxlimit) {
+        List<String> bookDescList = new ArrayList<>(Arrays.asList(bookDescription.split(" ")));
+        List<String> cp = new ArrayList<>();
+        StringBuilder sb;
+        int counter = 0;
+
+        for (int i = 0; i < bookDescList.size(); i++) {
+            if (counter == maxlimit) {
+                sb = new StringBuilder(bookDescList.get(i));
+                sb.append("/\n");
+                cp.add(sb.toString());
+                counter = 0;
+            } else {
+                cp.add(bookDescList.get(i));
+                counter++;
+            }
+        }
+
+        sb = new StringBuilder();
+
+        for (String s : cp) {
+            sb.append(s);
+        }
+
+        return sb.toString();
     }
 }

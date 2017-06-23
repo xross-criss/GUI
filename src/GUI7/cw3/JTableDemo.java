@@ -74,7 +74,7 @@ public class JTableDemo extends JFrame {
             tableModel.addEmptyRow();
         }
 
-        // obsługa usuwania podobnie jak w cw 2 - przez kliknięcie myszką z przyciśniętym Alt'em
+        // obsługa rekordów tabeli
         table.addMouseListener(new MouseAdapter() {
 
             @Override
@@ -87,10 +87,7 @@ public class JTableDemo extends JFrame {
                 if (e.isControlDown() && table.getSelectedRow() >= 0) { // wciśnięcie CTRL na danej książce ma pokazać szczegóły danej książki wraz ze zdjęciem okładki
                     //TODO - add control listener, where new window appears and there are details about books, and we can find cover photo at the top od these details.
                     //TODO - It is required to add temporary cache holding data with all the changes, and after coming back from detailed page to be restored.
-                    JPageBookDetails jPageBookDetails = new JPageBookDetails();
-                    jPageBookDetails.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                    jPageBookDetails.pack();
-                    jPageBookDetails.setLocationByPlatform(true);
+                    JPageBookDetails jPageBookDetails = new JPageBookDetails(); // ???
                     jPageBookDetails.setVisible(true);
 
                 }
@@ -133,12 +130,14 @@ public class JTableDemo extends JFrame {
                             tempCacheList.addBookToList(new Book(listStr[0], listStr[1], Double.parseDouble(listStr[2]), listStr[3], listStr[4]));
                             tableModel.addRow(tempCacheList.getBook(iteration)); //TODO - Trzeba pobrać Book(Author, Title, Price)
                             line = in.readLine();
-                            iteration += 1;
+                            iteration++;
                         }
                     } catch (FileNotFoundException e1) {
                         e1.printStackTrace();
                     } catch (IOException e1) {
                         e1.printStackTrace();
+                    } catch (NullPointerException np) {
+                        np.printStackTrace();
                     }
 
                     tableModel.deleteRowAt(0);
