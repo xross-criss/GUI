@@ -7,33 +7,18 @@ public class Icon implements javax.swing.Icon {
     protected Color color;
     protected int widht, height;
 
-    /**
-     *
-     */
     public Icon() {
         this(10, 10, Color.GREEN);
     }
 
-    /**
-     * @param color
-     */
     public Icon(Color color) {
         this(10, 10, color);
     }
 
-    /**
-     * @param width
-     * @param height
-     */
     public Icon(int width, int height) {
         this(width, height, Color.GREEN);
     }
 
-    /**
-     * @param width
-     * @param height
-     * @param color
-     */
     public Icon(int width, int height, Color color) {
         this.widht = width;
         this.height = height;

@@ -9,7 +9,6 @@ public class FileManager {
     JFileChooser chooser;
     JPanel panel;
     JTextArea textArea;
-    String name;
     File storage;
 
     public FileManager(JTextArea textArea) {
@@ -17,8 +16,8 @@ public class FileManager {
         this.textArea = textArea;
 
         chooser = new JFileChooser();
-        chooser.addChoosableFileFilter(new FileNameExtensionFilter(
-                "pliki tekstowe", "txt"));
+        chooser.addChoosableFileFilter(new FileNameExtensionFilter("Text files", "txt"));
+        chooser.addChoosableFileFilter(new FileNameExtensionFilter("Data files", "dat"));
         panel = new JPanel();
     }
 
@@ -28,7 +27,7 @@ public class FileManager {
 
     public void read() {
 
-        int ret = chooser.showDialog(panel, "Otwórz plik");
+        int ret = chooser.showDialog(panel, "Open file");
         if (ret == JFileChooser.APPROVE_OPTION) {
             try {
                 storage = chooser.getSelectedFile();
@@ -43,6 +42,8 @@ public class FileManager {
                 }
 
                 br.close();
+            } catch (NullPointerException e) {
+
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
@@ -61,7 +62,7 @@ public class FileManager {
 
     public void saveAs() {
 
-        int ret = chooser.showDialog(panel, "Zapisz jako");
+        int ret = chooser.showDialog(panel, "Save as...");
         if (ret == JFileChooser.APPROVE_OPTION) {
             storage = chooser.getSelectedFile();
             saveIn(chooser.getSelectedFile());

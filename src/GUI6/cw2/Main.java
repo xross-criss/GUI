@@ -16,8 +16,8 @@ public class Main extends JFrame {
 
     boolean isChange = false;
     JTextArea textArea;
-    String titlePrefix = "Prosty edytor - ", titleSufix,
-            titleSufixDefault = "bez tytułu";
+    String titlePrefix = "Simple Editor - ", titleSufix,
+            titleSufixDefault = "no title";
     FileManager fileManager;
     Hashtable<String, Color> colors;
     HashMap<Integer, String> fonts;
@@ -70,7 +70,7 @@ public class Main extends JFrame {
         JMenu file = new JMenu("File");
 
         JMenuItem fileOpen = new JMenuItem("Open");
-        fileOpen.setToolTipText("Otwórz plik");
+        fileOpen.setToolTipText("Opem File...");
         fileOpen.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O,
                 ActionEvent.CTRL_MASK));
         fileOpen.addActionListener(new ActionListener() {
@@ -82,7 +82,7 @@ public class Main extends JFrame {
         });
 
         JMenuItem fileSave = new JMenuItem("Save");
-        fileSave.setToolTipText("Zapisz do pliku");
+        fileSave.setToolTipText("Save to file");
         fileSave.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S,
                 ActionEvent.CTRL_MASK));
         fileSave.addActionListener(new ActionListener() {
@@ -93,7 +93,7 @@ public class Main extends JFrame {
         });
 
         JMenuItem fileSaveas = new JMenuItem("Save As");
-        fileSaveas.setToolTipText("Zapisz do nowego pliku");
+        fileSaveas.setToolTipText("Save As...");
         fileSaveas.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A,
                 ActionEvent.CTRL_MASK));
         fileSaveas.addActionListener(new ActionListener() {
@@ -105,7 +105,7 @@ public class Main extends JFrame {
         });
 
         JMenuItem fileExit = new JMenuItem("Exit");
-        fileExit.setToolTipText("Wyjście z edytora");
+        fileExit.setToolTipText("Quit");
         fileExit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q,
                 ActionEvent.CTRL_MASK));
         fileExit.addActionListener(new ActionListener() {
@@ -115,8 +115,8 @@ public class Main extends JFrame {
                     System.exit(0);
 
                 int choice = JOptionPane.showConfirmDialog(null,
-                        "Zakończyć pracę? Niezapisane zmiany zostaną utracone",
-                        "Wyjście z programu", 2);
+                        "Would you like to end program without saving? Unsaved changes will be lost.",
+                        "Exit the program", 2);
                 if (choice == JOptionPane.OK_OPTION) {
                     System.exit(0);
                 } else {
@@ -132,10 +132,10 @@ public class Main extends JFrame {
         file.add(fileExit);
 
         JMenu edit = new JMenu("Edit");
-        JMenu editAddresses = new JMenu("Adresy");
+        JMenu editAddresses = new JMenu("Adresses");
 
-        JMenuItem editAddressesWork = new JMenuItem("Praca");
-        editAddressesWork.setToolTipText("Wstaw adres miejsca zatrudnienia");
+        JMenuItem editAddressesWork = new JMenuItem("Work");
+        editAddressesWork.setToolTipText("Enter your work address");
         editAddressesWork.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P,
                 ActionEvent.CTRL_MASK + ActionEvent.SHIFT_MASK));
         editAddressesWork.addActionListener(new ActionListener() {
@@ -147,7 +147,7 @@ public class Main extends JFrame {
         });
 
         JMenuItem editAddressesHome = new JMenuItem("Dom");
-        editAddressesHome.setToolTipText("Wstaw adres miejsca zamieszkania");
+        editAddressesHome.setToolTipText("Enter your living address");
         editAddressesHome.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S,
                 ActionEvent.CTRL_MASK + ActionEvent.SHIFT_MASK));
         editAddressesHome.addActionListener(new ActionListener() {
@@ -158,8 +158,8 @@ public class Main extends JFrame {
             }
         });
 
-        JMenuItem editAddressesSchool = new JMenuItem("Szkoła");
-        editAddressesSchool.setToolTipText("Wstaw adres uczelni");
+        JMenuItem editAddressesSchool = new JMenuItem("University");
+        editAddressesSchool.setToolTipText("Enter your Univeristy Address");
         editAddressesSchool.setAccelerator(KeyStroke.getKeyStroke(
                 KeyEvent.VK_D, ActionEvent.CTRL_MASK + ActionEvent.SHIFT_MASK));
         editAddressesSchool.addActionListener(new ActionListener() {
